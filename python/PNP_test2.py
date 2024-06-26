@@ -9,7 +9,7 @@ object_points = np.array([
     [-5.00, 6.00, 3.00],
     [-11.00, -18.00, 15.00],
     [1.00, 0.00, -3.00],
-    [-2.00, -2.00, 4.00]
+    [-2.00, -2.00, -4.00]
 ], dtype=np.float32)
 
 # Puntos 2D (invertir la coordenada Y para coincidir con el sistema de coordenadas de OpenCV)
@@ -43,8 +43,8 @@ rotation_matrix, _ = cv2.Rodrigues(rvec)
 projected_points, _ = cv2.projectPoints(object_points, rvec, tvec, camera_matrix, dist_coeffs)
 
 # Imprimir resultados
-print("Vector de rotación (rvec) en grados:\n", rvec * 180 / math.pi)
-print("Vector de traslación (tvec):\n", tvec)
+print("Vector de traslación (tvec):\n", tvec.flatten())
+print("Vector de rotación (rvec) en grados:\n", rvec.flatten() * 180 / math.pi)
 print("Matriz de rotación:\n", rotation_matrix)
 print("Puntos proyectados:\n", projected_points)
 
